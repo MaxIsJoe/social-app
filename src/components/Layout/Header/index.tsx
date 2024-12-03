@@ -7,7 +7,13 @@ import {useNavigation} from '@react-navigation/native'
 import {NavigationProp} from '#/lib/routes/types'
 import {isIOS} from '#/platform/detection'
 import {useSetDrawerOpen} from '#/state/shell'
-import {atoms as a, useBreakpoints, useGutterStyles, useTheme} from '#/alf'
+import {
+  atoms as a,
+  TextStyleProp,
+  useBreakpoints,
+  useGutterStyles,
+  useTheme,
+} from '#/alf'
 import {Button, ButtonIcon} from '#/components/Button'
 import {ArrowLeft_Stroke2_Corner0_Rounded as ArrowLeft} from '#/components/icons/Arrow'
 import {Menu_Stroke2_Corner0_Rounded as Menu} from '#/components/icons/Menu'
@@ -112,7 +118,10 @@ export function MenuButton() {
   )
 }
 
-export function TitleText({children}: {children: React.ReactNode}) {
+export function TitleText({
+  children,
+  style,
+}: {children: React.ReactNode} & TextStyleProp) {
   const {gtMobile} = useBreakpoints()
   return (
     <Text
@@ -121,6 +130,7 @@ export function TitleText({children}: {children: React.ReactNode}) {
         a.font_heavy,
         a.leading_snug,
         gtMobile && [a.text_xl],
+        style,
       ]}>
       {children}
     </Text>
